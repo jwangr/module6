@@ -1,6 +1,7 @@
 import "./App.css";
-import Greeting from "./components/Greeting";
 import BigCats from "./components/BigCats";
+import Emoji from "./components/Emoji";
+import Greeting from "./components/Greeting";
 
 function App() {
   return (
@@ -8,6 +9,8 @@ function App() {
       <Greeting name='John'>
           <div>Welcome to this homepage.</div>
       </Greeting>
+
+      <Emoji />
 
       <BigCats />
     </>
