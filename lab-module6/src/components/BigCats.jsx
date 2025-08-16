@@ -1,4 +1,5 @@
 import SingleCat from "./SingleCat";
+import { useState } from "react";
 
 export default function BigCats() {
   const cats = [
@@ -11,9 +12,55 @@ export default function BigCats() {
     { name: "Tiger", latinName: "Panthera tigris" },
   ];
 
-  return(
+  const [sort, setSort] = useState("Alphabetical");
+  const [family, setFamily] = useState("Default");
+
+  const handleSort = (e) => {
+    setSort(e.target.value);
+  };
+  const handleFamily = (e) => {
+    setFamily(e.target.value);
+  };
+
+  // filter logic: returns true, if genre is default or cat is in specific family
+  function filterFamily(cat, family) {
+    return (
+      family === "Default" ||
+      cat.latinName.toLowerCase().includes(family.toLowerCase())
+    );
+  }
+
+  let displayedCats = cats.filter((cat) => filterFamily(cat, family));
+  sort === "Alphabetical" ? displayedCats : displayedCats.reverse();
+
+  return (
     <>
-    { cats.map(cat => (<SingleCat cat={cat} key={cat.name} />)) }
+      <div className="form-row">
+        <div className="col-md-6 mb-3">
+          <label>Sort by</label>
+          <select className="custom-select" value={sort} onChange={handleSort}>
+            <option selected>Alphabetical</option>
+            <option>Reverse Alphabetical</option>
+          </select>
+        </div>
+        <div className="col-md-6 mb-3">
+          <label>Family</label>
+          <select
+            className="custom-select"
+            value={family}
+            onChange={handleFamily}
+          >
+            <option>Default</option>
+            <option>Panthera</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="row">
+        {displayedCats.map((cat) => (
+          <SingleCat cat={cat} key={cat.name} />
+        ))}
+      </div>
     </>
-  )
+  );
 }
