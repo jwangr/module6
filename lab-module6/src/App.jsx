@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Greeting name='John'>
-          <div>Welcome to this homepage.</div>
+          <div>Welcome to the land of cats.</div>
       </Greeting>
 
       <Emoji />

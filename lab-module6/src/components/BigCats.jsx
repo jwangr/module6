@@ -3,7 +3,7 @@ import SingleCat from "./SingleCat";
 import { useState } from "react";
 
 export default function BigCats() {
-  const cats = [
+  const [cats, setCatList] = useState([
     { name: "Cheetah", latinName: "Acinonyx jubatus" },
     { name: "Cougar", latinName: "Puma concolor" },
     { name: "Jaguar", latinName: "Panthera onca" },
@@ -11,7 +11,7 @@ export default function BigCats() {
     { name: "Lion", latinName: "Panthera leo" },
     { name: "Snow leopard", latinName: "Panthera uncia" },
     { name: "Tiger", latinName: "Panthera tigris" },
-  ];
+  ]); // initialise an array of cats
 
   const [sort, setSort] = useState("Alphabetical");
   const [family, setFamily] = useState("Default");
@@ -31,16 +31,17 @@ export default function BigCats() {
     );
   }
 
+  const addNewCat = (newCat) => {
+    setCatList([...cats, newCat]);
+    // TO-DO: add custom sort function that takes in new array first before applying setCatList
+  };
+
   let displayedCats = cats.filter((cat) => filterFamily(cat, family));
   sort === "Alphabetical" ? displayedCats : displayedCats.reverse();
 
-  const addNewCat = (newCat) => {
-// TO DO
-  }
-
   return (
     <>
-    <AddCatForm />
+      <AddCatForm addNewCat={addNewCat} />
       <div className="form-row">
         <div className="col-md-6 mb-3">
           <label>Sort by</label>
