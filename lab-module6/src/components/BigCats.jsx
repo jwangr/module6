@@ -31,9 +31,25 @@ export default function BigCats() {
     );
   }
 
+  function sortABC(catList) {
+    catList.sort(function (a, b) {
+      let x = a.name.toLowerCase();
+      let y = b.name.toLowerCase();
+      if (x < y) {
+        return -1;
+      }
+      if (y < x) {
+        return 1;
+      }
+      return 0;
+    });
+    return catList;
+  }
+
   const addNewCat = (newCat) => {
-    setCatList([...cats, newCat]);
-    // TO-DO: add custom sort function that takes in new array first before applying setCatList
+    const addedList = [...cats, newCat];
+    const newList = sortABC(addedList);
+    setCatList(newList);
   };
 
   let displayedCats = cats.filter((cat) => filterFamily(cat, family));
