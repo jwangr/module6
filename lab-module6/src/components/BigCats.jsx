@@ -1,3 +1,4 @@
+import AddCatForm from "./AddCatForm";
 import SingleCat from "./SingleCat";
 import { useState } from "react";
 
@@ -33,8 +34,13 @@ export default function BigCats() {
   let displayedCats = cats.filter((cat) => filterFamily(cat, family));
   sort === "Alphabetical" ? displayedCats : displayedCats.reverse();
 
+  const addNewCat = (newCat) => {
+// TO DO
+  }
+
   return (
     <>
+    <AddCatForm />
       <div className="form-row">
         <div className="col-md-6 mb-3">
           <label>Sort by</label>

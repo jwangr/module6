@@ -5,7 +5,7 @@ export default function SingleCat({ cat }) {
     margin: '10px auto'
   };
   return (
-    <div className="card col-5 m-3">
+    <div className="card col-12 col-md-5 m-3">
       <img src={"garfield.jpg"} style={imageStyle} alt={cat.name}></img>
       <h1>{cat.name} </h1>
       <p>{cat.latinName} </p>
